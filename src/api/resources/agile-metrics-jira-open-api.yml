@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: Agile Metrics jira
+  description: ''
+  version: 1.0.0
+tags:
+  - name: metrics
+    description: Agile Metrics jira
+paths:
+  /metrics/:
+    put:
+      tags:
+        - metrics
+      summary: Update existing metric entries pulled from jira
+      operationId: updateMetrics
+      requestBody:
+        description: Update existing metric entries pulled from jira
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/jiraConfigRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        405:
+          description: Validation exception
+          content: { }
+    post:
+      tags:
+        - metrics
+      summary: Add metric entries pulled from jira
+      operationId: addMetrics
+      requestBody:
+        description: Add metric entries pulled from jira
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/jiraConfigRequest'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        405:
+          description: Invalid input
+          content: { }
+
+
+components:
+  schemas:
+    jiraConfigRequest:
+      type: object
+      properties:
+        config:
+          type: object
+          properties:
+            teamId:
+              type: number
+            teamName:
+              type: string
+            workFlowType:
+              type: string
+              enum: [ sprint, kanban ]
+            since:
+              type: string
+              format: date
+            until:
+              type: string
+              format: date
+            workFlowMap:
+              type: object
+              description: |
+                The list of states in the working pipeline, example:
+                "workFlowMap": {
+                  "Open": 1,
+                  "In Progress": 3,
+                  "Code Review": 4,
+                  "Po Review": 5,
+                  "Done": 7
+                }
+                The name of the state is not really used and is meant to make it easy to read, the numbers however they represent a transition:
+                 task moving forward:  lower number --> bigger number
+                 task moving backwards: bigger number --> lower number
+
+            estimateConfig:
+              type: object
+              properties:
+                maxTime:
+                  type: integer
+                  description: maximum working days for a sprint
+                estimationValues:
+                  type: array
+                  description: arrays of possible estimates for the given sprint duration
+                  items:
+                    type: integer
+
+            fields:
+              type: object
+              description: |
+                Any additional configurations like field names, example:
+                "fields": {
+                  "storyPoints": "customfield_..."
+                },
+
+
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: string

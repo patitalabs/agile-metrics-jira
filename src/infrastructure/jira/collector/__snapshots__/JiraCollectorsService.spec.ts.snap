@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JiraCollectorsService should fetch jiraMetrics for kanban 1`] = `
+Array [
+  Object {
+    "assignees": Array [
+      "someone",
+    ],
+    "commentCount": 4,
+    "created": 2018-12-02T00:00:00.000Z,
+    "createdAt": 2018-12-06T00:00:00.000Z,
+    "createdBy": "someone",
+    "cycleTime": 2,
+    "dataType": "PTS",
+    "estimateHealth": 0,
+    "finished": 2018-12-06T00:00:00.000Z,
+    "id": "b8c1af4128307d9bac209e2f9504b3d1992cda17a1e4a6144f43ad5fe2bb52da000ca14e9322b17fe105d72d809214d0a86cfaff844b2e8bcff2e14d0b7b665e",
+    "issueType": "Story",
+    "jiraProject": "someProject",
+    "key": "someKey-1",
+    "leadTime": 4,
+    "movedBackward": 0,
+    "movedForward": 1,
+    "numberOfBugs": 1,
+    "rawEstimateHealth": 0.00001,
+    "storyPoints": 2,
+    "tags": Array [
+      "label1",
+      "label2",
+    ],
+    "teamName": "someTeam",
+  },
+]
+`;
+
+exports[`JiraCollectorsService should fetch jiraMetrics for sprint 1`] = `
+Array [
+  Object {
+    "assignees": Array [
+      "someone",
+    ],
+    "commentCount": 4,
+    "created": 2018-12-02T00:00:00.000Z,
+    "createdAt": 2018-12-06T00:00:00.000Z,
+    "createdBy": "someone",
+    "cycleTime": 2,
+    "dataType": "PTS",
+    "estimateHealth": 0,
+    "finished": 2018-12-06T00:00:00.000Z,
+    "id": "b8c1af4128307d9bac209e2f9504b3d1992cda17a1e4a6144f43ad5fe2bb52da000ca14e9322b17fe105d72d809214d0a86cfaff844b2e8bcff2e14d0b7b665e",
+    "issueType": "Story",
+    "jiraProject": "someProject",
+    "key": "someKey-1",
+    "leadTime": 4,
+    "movedBackward": 0,
+    "movedForward": 1,
+    "numberOfBugs": 1,
+    "rawEstimateHealth": 0.00001,
+    "storyPoints": 2,
+    "tags": Array [
+      "label1",
+      "label2",
+    ],
+    "teamName": "someTeam",
+  },
+]
+`;

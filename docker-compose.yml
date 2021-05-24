@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  agile-metrics-jira:
+    image: agile-metrics-jira
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - JIRA_HOST=TBD_JIRA_HOST
+      - JIRA_API_TOKEN=TBD_JIRA_API_TOKEN
+      - CORE_METRICS_URL=TBD_CORE_METRICS_URL

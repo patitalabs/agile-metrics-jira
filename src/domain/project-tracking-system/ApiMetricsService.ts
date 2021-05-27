@@ -4,6 +4,7 @@ import {
   CoreMetricsService,
   TeamMetricsRequest,
 } from '../Types';
+import {PtsCollectorConfig} from "./Types";
 
 export class ApiMetricsService {
   constructor(
@@ -26,7 +27,7 @@ export class ApiMetricsService {
 
       for (const configurationDescriptor of configurationDescriptors) {
         const scmMetricItems = await this.ciCollectorService.fetch(
-          configurationDescriptor.config
+          new PtsCollectorConfig(configurationDescriptor.config)
         );
         await this.coreMetricsService.publish(
           scmMetricItems,
@@ -35,7 +36,7 @@ export class ApiMetricsService {
       }
       Logger.info('Done!');
     } catch (error) {
-      Logger.error(error);
+      Logger.error(`message: ${error.message}, stack:${error.stack}`);
     }
   }
 

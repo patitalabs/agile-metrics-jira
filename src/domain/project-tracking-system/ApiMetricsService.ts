@@ -4,7 +4,7 @@ import {
   CoreMetricsService,
   TeamMetricsRequest,
 } from '../Types';
-import {PtsCollectorConfig} from "./Types";
+import { InvalidConfigurationException, PtsCollectorConfig } from './Types';
 
 export class ApiMetricsService {
   constructor(
@@ -37,6 +37,9 @@ export class ApiMetricsService {
       Logger.info('Done!');
     } catch (error) {
       Logger.error(`message: ${error.message}, stack:${error.stack}`);
+      if (error instanceof InvalidConfigurationException) {
+        throw error;
+      }
     }
   }
 

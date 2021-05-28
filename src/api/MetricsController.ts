@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { Logger } from '../config/Logger';
 import { TeamMetricsRequest } from '../domain/Types';
 import { appContext } from '../config/AppContext';
+import { InvalidConfigurationException } from '../domain/project-tracking-system/Types';
 
 export class MetricsController {
   static postMetrics = (req: Request, res: Response): void => {
@@ -26,7 +27,11 @@ export class MetricsController {
       Logger.info('Done!');
     } catch (error) {
       Logger.error(error);
-      res.json({ error: 'Could not process request' });
+      if (error instanceof InvalidConfigurationException) {
+        res.status(400).json({ error: 'Invalid request.' });
+      } else {
+        res.json({ error: 'Could not process request' });
+      }
     }
   }
 
@@ -41,6 +46,10 @@ export class MetricsController {
     const method = req.method;
 
     const shouldUpdateEntries = method === 'PUT';
+
+    if (!config) {
+      throw new InvalidConfigurationException();
+    }
 
     return {
       config,

@@ -1,3 +1,5 @@
+import { Utils } from '../../utils/Utils';
+
 export interface PtsMetricItem {
   id: string;
   dataType: string;
@@ -21,6 +23,8 @@ export interface PtsMetricItem {
   rawEstimateHealth: number;
   numberOfBugs: number;
 }
+
+export class InvalidConfigurationException extends Error {}
 
 export class PtsCollectorConfig {
   teamId: number;
@@ -48,6 +52,10 @@ export class PtsCollectorConfig {
     this.fields = fields;
     this.teamName = teamName;
     this.workFlowType = workFlowType ? workFlowType : 'sprint';
+
+    if (!this.teamId || !this.teamName || !Utils.isDate(this.until)) {
+      throw new InvalidConfigurationException();
+    }
   }
 
   isKanban(): boolean {

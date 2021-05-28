@@ -10,6 +10,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - JIRA_HOST=TBD_JIRA_HOST
-      - JIRA_API_TOKEN=TBD_JIRA_API_TOKEN
-      - CORE_METRICS_URL=TBD_CORE_METRICS_URL
+      - JIRA_HOST=${JIRA_HOST}
+      - JIRA_API_TOKEN=${JIRA_API_TOKEN}
+      - CORE_METRICS_URL=${CORE_METRICS_URL}

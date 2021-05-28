@@ -13,6 +13,10 @@ export class Utils {
     return crypto.createHash('sha512').update(theText).digest('hex');
   }
 
+  static isDate(wrapper: any) {
+    return !isNaN(wrapper.getDate());
+  }
+
   static isDateInRange({
     createdAt,
     since,

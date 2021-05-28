@@ -27,7 +27,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-        405:
+        400:
           description: Validation exception
           content: { }
     post:
@@ -49,7 +49,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-        405:
+        400:
           description: Invalid input
           content: { }
 

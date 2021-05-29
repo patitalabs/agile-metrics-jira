@@ -59,7 +59,7 @@ export class Converters {
     return {
       subtasks: IssueConverter.subtasks(details),
       histories: Utils.mapToObj(histories),
-      labels: details.labels,
+      labels: details.fields.labels || [],
       created: new Date(details.fields.created),
       createdBy: details.fields.creator.name,
       resolutionDate: IssueConverter.resolutionDate(details, histories),

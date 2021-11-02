@@ -88,7 +88,7 @@ export class JiraMetricConverter {
     const movedBackwardDates = [];
     const movedForwardDates = [];
 
-    const statusHistoryEntries = task.histories.status || [];
+    const statusHistoryEntries = task?.histories.status || [];
 
     for (const history of statusHistoryEntries) {
       for (const historyItem of history.items) {

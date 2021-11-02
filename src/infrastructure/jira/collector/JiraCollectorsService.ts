@@ -14,7 +14,9 @@ export class JiraCollectorsService implements PtsCollectorService {
     ptsCollectorConfig: PtsCollectorConfig
   ): Promise<PtsMetricItem[]> {
     const tasks: Task[] = await this.tasks(ptsCollectorConfig);
-    return tasks.map((task) =>
+    return tasks
+        .filter((task)=> task != null)
+        .map((task) =>
       JiraMetricConverter.toMetricItem(ptsCollectorConfig, task)
     );
   }

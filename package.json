@@ -15,7 +15,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "axios": "^0.21.3",
+    "axios": "^0.24.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "winston": "^3.3.3"

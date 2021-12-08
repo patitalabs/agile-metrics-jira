@@ -15,10 +15,10 @@ export class JiraCollectorsService implements PtsCollectorService {
   ): Promise<PtsMetricItem[]> {
     const tasks: Task[] = await this.tasks(ptsCollectorConfig);
     return tasks
-        .filter((task)=> task != null)
-        .map((task) =>
-      JiraMetricConverter.toMetricItem(ptsCollectorConfig, task)
-    );
+      .filter((task) => task != null)
+      .map((task) =>
+        JiraMetricConverter.toMetricItem(ptsCollectorConfig, task)
+      );
   }
 
   private async tasks(ptsCollectorConfig: PtsCollectorConfig): Promise<Task[]> {
